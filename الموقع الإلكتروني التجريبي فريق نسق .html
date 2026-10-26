@@ -1,0 +1,2208 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl" data-theme="light">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>فريق نسق | NASAQ TEAM - حلول تقنية وإبداعية وإدارية متكاملة</title>
+
+<!-- أيقونة المتصفح (Favicon) بالشعار الهندسي الرسمي لفريق نسق -->
+<link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 120 120'%3E%3Crect width='120' height='120' rx='24' fill='%23f8f5ed'/%3E%3Cpath d='M54 34 C72 28 84 40 80 58 L80 66 L54 40 Z' fill='none' stroke='%23b99b61' stroke-width='6.5' stroke-linejoin='miter'/%3E%3Cpath d='M66 86 C48 92 36 80 40 62 L40 54 L66 80 Z' fill='none' stroke='%23b99b61' stroke-width='6.5' stroke-linejoin='miter'/%3E%3Cpath d='M26 84 L26 20 L94 88 L94 30' fill='none' stroke='%2305422c' stroke-width='9.5' stroke-linecap='butt' stroke-linejoin='miter'/%3E%3C/svg%3E" />
+
+<!-- استدعاء الخط المؤسسي IBM Plex Sans Arabic وخط التجوال كبديل مساند -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+Arabic:wght@300;400;500;600;700&family=Tajawal:wght@400;500;700&display=swap" rel="stylesheet">
+
+<style>
+/* متغيرات الوضع النهاري الافتراضي */
+:root,
+html[data-theme="light"] {
+color-scheme: light;
+--primary-dark: #002623;
+--primary-teal: #004a40;
+--accent-gold: #b9a779;
+--accent-wheat: #af9b62;
+--bg-main: #f9f7f2;
+--bg-card: #ffffff;
+--bg-subtle: #f1ede4;
+--bg-input: #ffffff;
+--bg-selected: rgba(0, 74, 64, 0.09);
+--text-main: #0f1f1d;
+--text-muted: #4a5d5a;
+--border-color: rgba(185, 167, 121, 0.38);
+--shadow-sm: 0 4px 15px rgba(0, 38, 35, 0.06);
+--shadow-md: 0 12px 32px rgba(0, 38, 35, 0.12);
+--radius-md: 12px;
+--radius-lg: 18px;
+}
+
+/* متغيرات الوضع الليلي الكامل والصريح */
+html[data-theme="dark"] {
+color-scheme: dark;
+--primary-dark: #002623;
+--primary-teal: #004a40;
+--accent-gold: #b9a779;
+--accent-wheat: #af9b62;
+--bg-main: #001412;
+--bg-card: #00221f;
+--bg-subtle: #001b18;
+--bg-input: #001614;
+--bg-selected: rgba(185, 167, 121, 0.16);
+--text-main: #f5f2eb;
+--text-muted: #b5c7c4;
+--border-color: rgba(185, 167, 121, 0.32);
+--shadow-sm: 0 4px 15px rgba(0, 0, 0, 0.35);
+--shadow-md: 0 12px 32px rgba(0, 0, 0, 0.55);
+}
+
+/* ضبط شامل للخطوط العربية ومنع تباعد الأحرف نهائياً */
+* {
+margin: 0;
+padding: 0;
+box-sizing: border-box;
+letter-spacing: 0 !important;
+font-family: 'IBM Plex Sans Arabic', 'Tajawal', sans-serif;
+}
+
+html {
+scroll-behavior: smooth;
+}
+
+body {
+background-color: var(--bg-main);
+color: var(--text-main);
+line-height: 1.75;
+transition: background-color 0.25s ease, color 0.25s ease;
+overflow-x: hidden;
+}
+
+a {
+text-decoration: none;
+color: inherit;
+}
+
+ul {
+list-style: none;
+}
+
+.container {
+width: 92%;
+max-width: 1240px;
+margin: 0 auto;
+}
+
+/* شريط تقدم القراءة العلوي */
+.scroll-progress {
+position: fixed;
+top: 0;
+right: 0;
+height: 3px;
+background: linear-gradient(90deg, var(--accent-gold), var(--accent-wheat));
+width: 0%;
+z-index: 2000;
+}
+
+/* الشريط العلوي (Navbar) */
+header {
+position: sticky;
+top: 0;
+z-index: 1000;
+background: rgba(0, 38, 35, 0.97);
+backdrop-filter: blur(12px);
+border-bottom: 1px solid rgba(185, 167, 121, 0.35);
+padding: 0.8rem 0;
+}
+
+.nav-wrapper {
+display: flex;
+align-items: center;
+justify-content: space-between;
+gap: 1rem;
+}
+
+.brand {
+display: flex;
+align-items: center;
+gap: 0.8rem;
+color: #ffffff;
+}
+
+.brand-mark {
+width: 48px;
+height: 48px;
+border-radius: 11px;
+background: #f8f5ed;
+border: 1.5px solid var(--accent-gold);
+display: flex;
+align-items: center;
+justify-content: center;
+overflow: hidden;
+flex-shrink: 0;
+position: relative;
+box-shadow: 0 3px 10px rgba(0, 0, 0, 0.25);
+}
+
+.brand-mark svg {
+width: 86%;
+height: 86%;
+display: block;
+}
+
+.brand-text h1 {
+font-size: 1.15rem;
+font-weight: 700;
+color: #ffffff;
+line-height: 1.2;
+}
+
+.brand-text span {
+font-size: 0.75rem;
+color: var(--accent-gold);
+display: block;
+font-weight: 500;
+}
+
+.nav-links {
+display: flex;
+align-items: center;
+gap: 1.35rem;
+}
+
+.nav-links a {
+color: #e6e2d8;
+font-size: 0.93rem;
+font-weight: 500;
+transition: color 0.2s ease;
+padding: 0.3rem 0;
+}
+
+.nav-links a:hover {
+color: var(--accent-gold);
+}
+
+.nav-actions {
+display: flex;
+align-items: center;
+gap: 0.6rem;
+}
+
+.theme-toggle-btn {
+background: rgba(185, 167, 121, 0.15);
+border: 1.5px solid var(--accent-gold);
+color: var(--accent-gold);
+height: 40px;
+padding: 0 0.85rem;
+border-radius: 10px;
+cursor: pointer;
+display: inline-flex;
+align-items: center;
+gap: 0.45rem;
+font-size: 0.84rem;
+font-weight: 600;
+transition: all 0.2s ease;
+}
+
+.theme-toggle-btn:hover {
+background: var(--accent-gold);
+color: var(--primary-dark);
+}
+
+.icon-btn {
+background: rgba(185, 167, 121, 0.15);
+border: 1.5px solid var(--accent-gold);
+color: var(--accent-gold);
+width: 40px;
+height: 40px;
+border-radius: 10px;
+cursor: pointer;
+display: flex;
+align-items: center;
+justify-content: center;
+transition: all 0.2s ease;
+}
+
+.mobile-menu-btn {
+display: none;
+}
+
+/* القائمة المتجاوبة للهاتف */
+.mobile-drawer {
+display: none;
+background: #002623;
+border-bottom: 2px solid var(--accent-gold);
+padding: 1rem 0;
+}
+
+.mobile-drawer.open {
+display: block;
+}
+
+.mobile-drawer ul {
+display: flex;
+flex-direction: column;
+gap: 0.4rem;
+}
+
+.mobile-drawer a {
+display: block;
+padding: 0.65rem 1rem;
+color: #ffffff;
+border-radius: 8px;
+font-weight: 500;
+}
+
+.mobile-drawer a:hover {
+background: rgba(185, 167, 121, 0.15);
+color: var(--accent-gold);
+}
+
+/* الأزرار العامة */
+.btn {
+display: inline-flex;
+align-items: center;
+justify-content: center;
+gap: 0.5rem;
+padding: 0.65rem 1.35rem;
+border-radius: 10px;
+font-weight: 600;
+font-size: 0.92rem;
+cursor: pointer;
+transition: all 0.22s ease;
+border: none;
+}
+
+.btn-gold {
+background: linear-gradient(135deg, var(--accent-gold), var(--accent-wheat));
+color: #002623;
+}
+
+.btn-gold:hover {
+transform: translateY(-2px);
+box-shadow: 0 6px 20px rgba(185, 167, 121, 0.35);
+}
+
+.btn-outline {
+background: transparent;
+border: 1.5px solid var(--accent-gold);
+color: var(--text-main);
+}
+
+.hero .btn-outline,
+.builder-summary .btn-outline {
+color: var(--accent-gold);
+}
+
+.btn-outline:hover {
+background: var(--accent-gold);
+color: #002623 !important;
+}
+
+.btn-sm {
+padding: 0.45rem 0.9rem;
+font-size: 0.82rem;
+border-radius: 8px;
+}
+
+/* الواجهة الرئيسية (Hero Section) */
+.hero {
+background: radial-gradient(circle at top right, #004a40, #002623 72%);
+color: #ffffff;
+padding: 4.8rem 0 4.5rem;
+position: relative;
+border-bottom: 3px solid var(--accent-gold);
+}
+
+.hero-grid {
+display: grid;
+grid-template-columns: 1.2fr 0.8fr;
+gap: 3rem;
+align-items: center;
+}
+
+.hero-badge {
+display: inline-flex;
+align-items: center;
+gap: 0.5rem;
+background: rgba(185, 167, 121, 0.15);
+border: 1px solid rgba(185, 167, 121, 0.45);
+color: var(--accent-gold);
+padding: 0.35rem 1rem;
+border-radius: 50px;
+font-size: 0.85rem;
+font-weight: 600;
+margin-bottom: 1.25rem;
+}
+
+.hero h2 {
+font-size: 2.4rem;
+font-weight: 700;
+line-height: 1.35;
+margin-bottom: 1.15rem;
+color: #ffffff;
+}
+
+.hero h2 span {
+color: var(--accent-gold);
+}
+
+.hero p {
+font-size: 1.03rem;
+color: #d7e2e0;
+margin-bottom: 2rem;
+max-width: 620px;
+}
+
+.hero-btns {
+display: flex;
+flex-wrap: wrap;
+gap: 0.9rem;
+}
+
+.hero-right-panel {
+display: flex;
+flex-direction: column;
+gap: 1.25rem;
+}
+
+.hero-logo-showcase {
+background: #f8f5ed;
+border: 2px solid var(--accent-gold);
+border-radius: var(--radius-lg);
+padding: 1.5rem 1.2rem;
+text-align: center;
+box-shadow: 0 12px 30px rgba(0, 0, 0, 0.28);
+}
+
+.hero-logo-showcase svg {
+width: 105px;
+height: 105px;
+margin: 0 auto 0.35rem;
+display: block;
+}
+
+.hero-logo-showcase h3 {
+color: #05422c;
+font-size: 1.6rem;
+font-weight: 700;
+line-height: 1.2;
+}
+
+.hero-logo-showcase span {
+color: #05422c;
+font-size: 0.9rem;
+font-weight: 700;
+display: block;
+margin-top: 0.1rem;
+}
+
+.hero-stats {
+background: rgba(255, 255, 255, 0.04);
+border: 1px solid rgba(185, 167, 121, 0.35);
+border-radius: var(--radius-lg);
+padding: 1.25rem;
+display: grid;
+grid-template-columns: repeat(2, 1fr);
+gap: 0.85rem;
+}
+
+.stat-box {
+padding: 0.8rem;
+background: rgba(0, 38, 35, 0.65);
+border-radius: var(--radius-md);
+border-right: 3px solid var(--accent-gold);
+}
+
+.stat-box h3 {
+font-size: 1.5rem;
+color: var(--accent-gold);
+font-weight: 700;
+}
+
+.stat-box p {
+font-size: 0.83rem;
+color: #e0e8e6;
+margin: 0;
+}
+
+/* عناوين الأقسام */
+section {
+padding: 4.5rem 0;
+}
+
+.section-subtle {
+background-color: var(--bg-subtle);
+border-top: 1px solid var(--border-color);
+border-bottom: 1px solid var(--border-color);
+}
+
+.section-header {
+text-align: center;
+max-width: 720px;
+margin: 0 auto 2.8rem;
+}
+
+.section-tag {
+color: var(--accent-gold);
+font-weight: 700;
+font-size: 0.88rem;
+display: block;
+margin-bottom: 0.4rem;
+}
+
+.section-header h2 {
+font-size: 1.95rem;
+font-weight: 700;
+color: var(--text-main);
+margin-bottom: 0.7rem;
+}
+
+.section-header p {
+color: var(--text-muted);
+font-size: 0.96rem;
+}
+
+/* قسم وحدات العمل المؤسسية (4 وحدات) */
+.units-grid {
+display: grid;
+grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+gap: 1.5rem;
+}
+
+.unit-card {
+background: var(--bg-card);
+border: 1px solid var(--border-color);
+border-top: 4px solid var(--accent-gold);
+border-radius: var(--radius-md);
+padding: 1.75rem;
+box-shadow: var(--shadow-sm);
+transition: transform 0.25s ease, box-shadow 0.25s ease;
+}
+
+.unit-card:hover {
+transform: translateY(-4px);
+box-shadow: var(--shadow-md);
+}
+
+.unit-icon {
+width: 48px;
+height: 48px;
+border-radius: 10px;
+color: var(--accent-gold);
+background-color: #002623;
+border: 1px solid rgba(185, 167, 121, 0.4);
+display: flex;
+align-items: center;
+justify-content: center;
+margin-bottom: 1.15rem;
+}
+
+.unit-card h3 {
+font-size: 1.15rem;
+margin-bottom: 0.6rem;
+color: var(--text-main);
+}
+
+.unit-card p {
+font-size: 0.9rem;
+color: var(--text-muted);
+}
+
+/* منهجية العمل المؤسسية */
+.workflow-grid {
+display: grid;
+grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+gap: 1.5rem;
+}
+
+.step-card {
+background: var(--bg-card);
+border: 1px solid var(--border-color);
+border-radius: var(--radius-md);
+padding: 1.6rem;
+box-shadow: var(--shadow-sm);
+}
+
+.step-number {
+width: 38px;
+height: 38px;
+border-radius: 8px;
+background: #002623;
+color: var(--accent-gold);
+border: 1px solid var(--accent-gold);
+display: flex;
+align-items: center;
+justify-content: center;
+font-weight: 700;
+margin-bottom: 1rem;
+}
+
+.step-card h3 {
+font-size: 1.1rem;
+margin-bottom: 0.45rem;
+color: var(--text-main);
+}
+
+.step-card p {
+font-size: 0.88rem;
+color: var(--text-muted);
+}
+
+/* شريط البحث والفلترة في قسم الخدمات */
+.services-controls {
+display: flex;
+flex-direction: column;
+gap: 1.25rem;
+margin-bottom: 2.25rem;
+}
+
+.search-box-wrapper {
+max-width: 520px;
+width: 100%;
+margin: 0 auto;
+position: relative;
+}
+
+.search-box-wrapper input {
+width: 100%;
+padding: 0.8rem 2.8rem 0.8rem 1rem;
+border-radius: 10px;
+border: 1.5px solid var(--border-color);
+background: var(--bg-input);
+color: var(--text-main);
+font-size: 0.93rem;
+}
+
+.search-box-wrapper input:focus {
+outline: none;
+border-color: var(--accent-gold);
+}
+
+.search-box-wrapper svg {
+position: absolute;
+right: 14px;
+top: 50%;
+transform: translateY(-50%);
+color: var(--text-muted);
+}
+
+.filter-bar {
+display: flex;
+justify-content: center;
+flex-wrap: wrap;
+gap: 0.6rem;
+}
+
+.filter-btn {
+padding: 0.55rem 1.2rem;
+border-radius: 8px;
+border: 1px solid var(--border-color);
+background: var(--bg-card);
+color: var(--text-main);
+font-weight: 600;
+font-size: 0.88rem;
+cursor: pointer;
+transition: all 0.2s ease;
+}
+
+.filter-btn.active,
+.filter-btn:hover {
+background: #002623;
+color: var(--accent-gold);
+border-color: var(--accent-gold);
+}
+
+.services-grid {
+display: grid;
+grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+gap: 1.5rem;
+}
+
+.service-card {
+background: var(--bg-card);
+border: 1.5px solid var(--border-color);
+border-radius: var(--radius-md);
+padding: 1.6rem;
+display: flex;
+flex-direction: column;
+justify-content: space-between;
+box-shadow: var(--shadow-sm);
+transition: all 0.22s ease;
+}
+
+.service-card.in-pkg {
+border-color: var(--accent-gold);
+background: var(--bg-selected);
+}
+
+.service-card:hover {
+transform: translateY(-4px);
+border-color: var(--accent-gold);
+box-shadow: var(--shadow-md);
+}
+
+.service-top {
+display: flex;
+align-items: flex-start;
+justify-content: space-between;
+margin-bottom: 1rem;
+}
+
+.service-icon {
+width: 44px;
+height: 44px;
+border-radius: 10px;
+background: #002623;
+color: var(--accent-gold);
+display: flex;
+align-items: center;
+justify-content: center;
+border: 1px solid rgba(185, 167, 121, 0.45);
+}
+
+.service-cat-tag {
+font-size: 0.75rem;
+padding: 0.2rem 0.65rem;
+border-radius: 50px;
+background: var(--bg-subtle);
+color: var(--text-muted);
+border: 1px solid var(--border-color);
+font-weight: 600;
+}
+
+.service-card h3 {
+font-size: 1.12rem;
+margin-bottom: 0.5rem;
+color: var(--text-main);
+}
+
+.service-card p {
+font-size: 0.88rem;
+color: var(--text-muted);
+margin-bottom: 1.25rem;
+}
+
+.service-action {
+margin-top: auto;
+display: flex;
+justify-content: space-between;
+align-items: center;
+padding-top: 0.9rem;
+border-top: 1px solid var(--border-color);
+}
+
+.service-toggle-btn {
+padding: 0.42rem 0.85rem;
+border-radius: 8px;
+font-size: 0.82rem;
+font-weight: 600;
+cursor: pointer;
+border: 1px solid var(--accent-gold);
+background: transparent;
+color: var(--text-main);
+transition: all 0.2s ease;
+}
+
+.service-toggle-btn.added {
+background: var(--accent-gold);
+color: #002623;
+}
+
+.service-toggle-btn:hover {
+background: var(--accent-gold);
+color: #002623;
+}
+
+/* الباقات المؤسسية الجاهزة */
+.presets-grid {
+display: grid;
+grid-template-columns: repeat(auto-fit, minmax(290px, 1fr));
+gap: 1.5rem;
+}
+
+.preset-card {
+background: var(--bg-card);
+border: 1.5px solid var(--border-color);
+border-radius: var(--radius-md);
+padding: 1.75rem;
+display: flex;
+flex-direction: column;
+justify-content: space-between;
+box-shadow: var(--shadow-sm);
+}
+
+.preset-card.featured {
+border: 2px solid var(--accent-gold);
+box-shadow: var(--shadow-md);
+}
+
+.preset-badge {
+display: inline-block;
+background: #002623;
+color: var(--accent-gold);
+border: 1px solid var(--accent-gold);
+padding: 0.2rem 0.75rem;
+border-radius: 50px;
+font-size: 0.76rem;
+font-weight: 600;
+margin-bottom: 0.8rem;
+}
+
+.preset-card h3 {
+font-size: 1.22rem;
+margin-bottom: 0.45rem;
+color: var(--text-main);
+}
+
+.preset-card p {
+font-size: 0.88rem;
+color: var(--text-muted);
+margin-bottom: 1rem;
+}
+
+.preset-items {
+margin-bottom: 1.4rem;
+}
+
+.preset-items li {
+font-size: 0.86rem;
+padding: 0.3rem 0;
+color: var(--text-main);
+display: flex;
+align-items: center;
+gap: 0.5rem;
+}
+
+.preset-items li::before {
+content: "✓";
+color: var(--accent-gold);
+font-weight: 700;
+}
+
+/* قسم مصمم الباقات المخصصة */
+.builder-wrapper {
+display: grid;
+grid-template-columns: 1.3fr 0.7fr;
+gap: 2rem;
+align-items: start;
+}
+
+.builder-options {
+background: var(--bg-card);
+padding: 1.75rem;
+border-radius: var(--radius-md);
+border: 1px solid var(--border-color);
+box-shadow: var(--shadow-sm);
+}
+
+.builder-toolbar {
+display: flex;
+justify-content: space-between;
+align-items: center;
+flex-wrap: wrap;
+gap: 0.75rem;
+margin-bottom: 1.15rem;
+padding-bottom: 0.85rem;
+border-bottom: 1px solid var(--border-color);
+}
+
+.builder-grid {
+display: grid;
+grid-template-columns: repeat(auto-fill, minmax(215px, 1fr));
+gap: 0.75rem;
+}
+
+/* زر اختيار الخدمة في مصمم الباقات (بديل آمن ومضمون عن checkbox التقليدي) */
+.pkg-item-btn {
+display: flex;
+align-items: center;
+gap: 0.65rem;
+padding: 0.75rem 0.9rem;
+border: 1.5px solid var(--border-color);
+border-radius: 10px;
+background: var(--bg-input);
+color: var(--text-main);
+cursor: pointer;
+transition: all 0.2s ease;
+text-align: right;
+font-size: 0.88rem;
+font-weight: 500;
+width: 100%;
+}
+
+.pkg-item-btn:hover {
+border-color: var(--accent-gold);
+}
+
+.pkg-item-btn.selected {
+background: var(--bg-selected);
+border-color: var(--accent-gold);
+font-weight: 700;
+}
+
+.check-indicator {
+width: 20px;
+height: 20px;
+border-radius: 6px;
+border: 1.5px solid var(--accent-gold);
+display: flex;
+align-items: center;
+justify-content: center;
+flex-shrink: 0;
+font-size: 0.78rem;
+color: transparent;
+background: transparent;
+transition: all 0.18s ease;
+}
+
+.pkg-item-btn.selected .check-indicator {
+background: var(--accent-gold);
+color: #002623;
+font-weight: 700;
+}
+
+.builder-summary {
+background: #002623;
+color: #ffffff;
+padding: 1.85rem;
+border-radius: var(--radius-md);
+border: 1.5px solid var(--accent-gold);
+position: sticky;
+top: 86px;
+box-shadow: var(--shadow-md);
+}
+
+.builder-summary h3 {
+color: var(--accent-gold);
+font-size: 1.2rem;
+margin-bottom: 1rem;
+border-bottom: 1px solid rgba(185, 167, 121, 0.25);
+padding-bottom: 0.7rem;
+}
+
+.selected-list {
+min-height: 115px;
+max-height: 250px;
+overflow-y: auto;
+margin-bottom: 1.15rem;
+}
+
+.selected-list li {
+font-size: 0.88rem;
+padding: 0.45rem 0;
+border-bottom: 1px dashed rgba(255, 255, 255, 0.15);
+display: flex;
+justify-content: space-between;
+align-items: center;
+color: #f5f2eb;
+}
+
+.remove-srv-btn {
+background: rgba(185, 167, 121, 0.18);
+color: var(--accent-gold);
+border: none;
+padding: 0.15rem 0.55rem;
+border-radius: 6px;
+font-size: 0.76rem;
+cursor: pointer;
+}
+
+.remove-srv-btn:hover {
+background: var(--accent-gold);
+color: #002623;
+}
+
+.form-group {
+margin-bottom: 1rem;
+}
+
+.form-group label {
+display: block;
+font-size: 0.85rem;
+margin-bottom: 0.35rem;
+color: var(--text-main);
+font-weight: 600;
+}
+
+.form-control {
+width: 100%;
+padding: 0.72rem 0.9rem;
+border-radius: 8px;
+border: 1.5px solid var(--border-color);
+background-color: var(--bg-input);
+color: var(--text-main);
+font-size: 0.92rem;
+}
+
+.form-control:focus {
+outline: none;
+border-color: var(--accent-gold);
+}
+
+/* قسم حجز المواعيد والاستشارات */
+.booking-card {
+max-width: 840px;
+margin: 0 auto;
+background: var(--bg-card);
+border: 1px solid var(--border-color);
+border-top: 4px solid var(--accent-gold);
+border-radius: var(--radius-lg);
+padding: 2.4rem;
+box-shadow: var(--shadow-md);
+}
+
+.booking-grid {
+display: grid;
+grid-template-columns: repeat(2, 1fr);
+gap: 1.2rem;
+}
+
+.booking-grid .full-width {
+grid-column: 1 / -1;
+}
+
+/* الأسئلة الشائعة */
+.faq-list {
+max-width: 840px;
+margin: 0 auto;
+display: flex;
+flex-direction: column;
+gap: 0.9rem;
+}
+
+.faq-item {
+background: var(--bg-card);
+border: 1px solid var(--border-color);
+border-radius: var(--radius-md);
+overflow: hidden;
+}
+
+.faq-question {
+width: 100%;
+padding: 1.15rem 1.4rem;
+background: none;
+border: none;
+color: var(--text-main);
+font-weight: 700;
+font-size: 0.96rem;
+text-align: right;
+display: flex;
+justify-content: space-between;
+align-items: center;
+cursor: pointer;
+}
+
+.faq-answer {
+display: none;
+padding: 0 1.4rem 1.2rem;
+color: var(--text-muted);
+font-size: 0.9rem;
+border-top: 1px dashed var(--border-color);
+padding-top: 0.9rem;
+}
+
+.faq-item.active .faq-answer {
+display: block;
+}
+
+/* التذييل الرسمي (Footer) */
+footer {
+background: #002623;
+color: #e6e2d8;
+padding: 4rem 0 2rem;
+border-top: 3px solid var(--accent-gold);
+}
+
+.footer-grid {
+display: grid;
+grid-template-columns: 1.4fr 1fr 1fr;
+gap: 2.5rem;
+margin-bottom: 2.5rem;
+}
+
+.footer-col h4 {
+color: var(--accent-gold);
+font-size: 1.1rem;
+margin-bottom: 1rem;
+}
+
+.footer-links li {
+margin-bottom: 0.6rem;
+}
+
+.footer-links a {
+color: #c9d6d4;
+font-size: 0.92rem;
+transition: color 0.2s ease;
+}
+
+.footer-links a:hover {
+color: var(--accent-gold);
+}
+
+.social-row {
+display: flex;
+flex-wrap: wrap;
+gap: 0.65rem;
+margin-top: 1.25rem;
+}
+
+.social-btn {
+display: inline-flex;
+align-items: center;
+gap: 0.45rem;
+padding: 0.5rem 0.95rem;
+border-radius: 8px;
+background: rgba(185, 167, 121, 0.12);
+border: 1px solid rgba(185, 167, 121, 0.4);
+color: var(--accent-gold);
+font-size: 0.84rem;
+font-weight: 600;
+transition: all 0.2s ease;
+}
+
+.social-btn:hover {
+background: var(--accent-gold);
+color: #002623;
+}
+
+.footer-bottom {
+text-align: center;
+padding-top: 1.75rem;
+border-top: 1px solid rgba(185, 167, 121, 0.2);
+font-size: 0.85rem;
+color: #9ab0ad;
+}
+
+/* نافذة التأكيد (Modal) */
+.modal-overlay {
+position: fixed;
+inset: 0;
+background: rgba(0, 20, 18, 0.8);
+backdrop-filter: blur(5px);
+display: none;
+align-items: center;
+justify-content: center;
+z-index: 3000;
+padding: 1rem;
+}
+
+.modal-overlay.show {
+display: flex;
+}
+
+.modal-box {
+background: var(--bg-card);
+color: var(--text-main);
+border: 2px solid var(--accent-gold);
+border-radius: var(--radius-lg);
+max-width: 480px;
+width: 100%;
+padding: 2rem;
+text-align: center;
+box-shadow: 0 20px 50px rgba(0, 0, 0, 0.5);
+}
+
+.ref-badge {
+display: inline-block;
+background: #002623;
+color: var(--accent-gold);
+border: 1px dashed var(--accent-gold);
+padding: 0.5rem 1.2rem;
+border-radius: 8px;
+font-size: 1.25rem;
+font-weight: 700;
+margin: 0.85rem 0;
+}
+
+/* إشعارات Toast العائمة */
+.toast-box {
+position: fixed;
+bottom: 24px;
+left: 24px;
+background: #002623;
+color: #ffffff;
+border: 1.5px solid var(--accent-gold);
+padding: 0.85rem 1.25rem;
+border-radius: 10px;
+font-size: 0.9rem;
+font-weight: 500;
+box-shadow: 0 10px 25px rgba(0, 0, 0, 0.4);
+z-index: 3500;
+opacity: 0;
+transform: translateY(20px);
+pointer-events: none;
+transition: all 0.25s ease;
+}
+
+.toast-box.show {
+opacity: 1;
+transform: translateY(0);
+}
+
+/* زر العودة للأعلى */
+.floating-actions {
+position: fixed;
+bottom: 24px;
+right: 24px;
+z-index: 1500;
+}
+
+.float-btn {
+width: 46px;
+height: 46px;
+border-radius: 12px;
+background: #002623;
+color: var(--accent-gold);
+border: 1.5px solid var(--accent-gold);
+display: flex;
+align-items: center;
+justify-content: center;
+cursor: pointer;
+box-shadow: 0 6px 18px rgba(0, 0, 0, 0.35);
+}
+
+@media (max-width: 960px) {
+.hero-grid,
+.builder-wrapper,
+.footer-grid,
+.booking-grid {
+grid-template-columns: 1fr;
+}
+.nav-links {
+display: none;
+}
+.mobile-menu-btn {
+display: flex;
+}
+.hero h2 {
+font-size: 1.85rem;
+}
+.builder-summary {
+position: static;
+}
+}
+</style>
+</head>
+<body>
+
+<!-- شريط تقدم القراءة -->
+<div class="scroll-progress" id="scrollProgress"></div>
+
+<!-- الشريط العلوي -->
+<header>
+<div class="container nav-wrapper">
+<a href="#" class="brand">
+<div class="brand-mark">
+<svg viewBox="0 0 120 120" aria-label="شعار فريق نسق">
+<path d="M54 34 C72 28 84 40 80 58 L80 66 L54 40 Z" fill="none" stroke="#b99b61" stroke-width="6.5" stroke-linejoin="miter" />
+<path d="M66 86 C48 92 36 80 40 62 L40 54 L66 80 Z" fill="none" stroke="#b99b61" stroke-width="6.5" stroke-linejoin="miter" />
+<path d="M26 84 L26 20 L94 88 L94 30" fill="none" stroke="#05422c" stroke-width="9.5" stroke-linecap="butt" stroke-linejoin="miter" />
+</svg>
+</div>
+<div class="brand-text">
+<h1>فريق نسق | NASAQ TEAM</h1>
+<span>حلول تقنية وإبداعية وإدارية</span>
+</div>
+</a>
+
+<nav>
+<ul class="nav-links">
+<li><a href="#units">وحدات العمل</a></li>
+<li><a href="#workflow">منهجيتنا</a></li>
+<li><a href="#services">الخدمات (12)</a></li>
+<li><a href="#presets">الباقات الجاهزة</a></li>
+<li><a href="#builder">مُصمم الباقات</a></li>
+<li><a href="#booking">حجز استشارة</a></li>
+<li><a href="#faq">الأسئلة الشائعة</a></li>
+</ul>
+</nav>
+
+<div class="nav-actions">
+<button type="button" class="theme-toggle-btn" id="themeToggleBtn" onclick="toggleThemeMode()">
+<span id="themeIconHolder">
+<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+<path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+</svg>
+</span>
+<span id="themeTextLabel">الوضع الليلي</span>
+</button>
+
+<button type="button" class="icon-btn mobile-menu-btn" onclick="toggleMobileMenu()" aria-label="القائمة">
+<svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+<line x1="3" y1="6" x2="21" y2="6"></line>
+<line x1="3" y1="12" x2="21" y2="12"></line>
+<line x1="3" y1="18" x2="21" y2="18"></line>
+</svg>
+</button>
+</div>
+</div>
+
+<!-- قائمة الهاتف المحمول -->
+<div class="mobile-drawer" id="mobileDrawer">
+<div class="container">
+<ul>
+<li><a href="#units" onclick="closeMobileMenu()">وحدات العمل التخصصية</a></li>
+<li><a href="#workflow" onclick="closeMobileMenu()">منهجية العمل</a></li>
+<li><a href="#services" onclick="closeMobileMenu()">دليل الخدمات (12 خدمة)</a></li>
+<li><a href="#presets" onclick="closeMobileMenu()">الباقات الجاهزة</a></li>
+<li><a href="#builder" onclick="closeMobileMenu()">مُصمم الباقات المخصصة</a></li>
+<li><a href="#booking" onclick="closeMobileMenu()">حجز موعد استشارة</a></li>
+<li><a href="#faq" onclick="closeMobileMenu()">الأسئلة الشائعة</a></li>
+</ul>
+</div>
+</div>
+</header>
+
+<!-- القسم الرئيسي -->
+<section class="hero">
+<div class="container hero-grid">
+<div>
+<div class="hero-badge">
+<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+<polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon>
+</svg>
+<span>منظومة عمل احترافية بمعايير مؤسسية</span>
+</div>
+<h2>نصنع <span>النَّسَق</span> المتكامل لنجاح أعمالك الرقمية والمؤسسية</h2>
+<p>
+يجمع فريق نسق بين الهندسة البرمجية، الأمن السيبراني، الصناعة الإبداعية للمحتوى، والتحليل الإداري والإحصائي ضمن هوية رسمية تضمن الدقة والموثوقية.
+</p>
+<div class="hero-btns">
+<a href="#services" class="btn btn-gold">استكشف خدماتنا</a>
+<a href="#presets" class="btn btn-outline">الباقات الجاهزة</a>
+<a href="#builder" class="btn btn-outline">صمّم باقتك الخاصة</a>
+</div>
+</div>
+
+<div class="hero-right-panel">
+<div class="hero-logo-showcase">
+<svg viewBox="0 0 120 120">
+<path d="M54 34 C72 28 84 40 80 58 L80 66 L54 40 Z" fill="none" stroke="#b99b61" stroke-width="6.5" stroke-linejoin="miter" />
+<path d="M66 86 C48 92 36 80 40 62 L40 54 L66 80 Z" fill="none" stroke="#b99b61" stroke-width="6.5" stroke-linejoin="miter" />
+<path d="M26 84 L26 20 L94 88 L94 30" fill="none" stroke="#05422c" stroke-width="9.5" stroke-linecap="butt" stroke-linejoin="miter" />
+</svg>
+<h3>فريق نسق</h3>
+<span>NASAQ TEAM</span>
+</div>
+
+<div class="hero-stats">
+<div class="stat-box">
+<h3>12+</h3>
+<p>خدمة تخصصية متكاملة</p>
+</div>
+<div class="stat-box">
+<h3>4</h3>
+<p>وحدات عمل مؤسسية</p>
+</div>
+<div class="stat-box">
+<h3>100%</h3>
+<p>التزام بمعايير الجودة</p>
+</div>
+<div class="stat-box">
+<h3>24/7</h3>
+<p>دعم تقني ومتابعة مستمرة</p>
+</div>
+</div>
+</div>
+</div>
+</section>
+
+<!-- وحدات العمل الأربعة -->
+<section id="units">
+<div class="container">
+<div class="section-header">
+<span class="section-tag">الهيكل التنظيمي</span>
+<h2>وحدات العمل التخصصية في فريق نسق</h2>
+<p>تتكامل وحداتنا الأربع لتقديم حلول شاملة تبدأ من التخطيط والتحليل وصولاً إلى التنفيذ التقني والإعلامي.</p>
+</div>
+
+<div class="units-grid">
+<div class="unit-card">
+<div class="unit-icon">
+<svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+<polyline points="16 18 22 12 16 6"></polyline>
+<polyline points="8 6 2 12 8 18"></polyline>
+</svg>
+</div>
+<h3>وحدة الحلول التقنية والبرمجة</h3>
+<p>تطوير المواقع والتطبيقات، بناء الأنظمة الذكية، وتقديم الدعم التقني المتقدم للمؤسسات والأفراد.</p>
+</div>
+
+<div class="unit-card">
+<div class="unit-icon">
+<svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+<path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path>
+</svg>
+</div>
+<h3>وحدة الأمن السيبراني</h3>
+<p>حماية البنية التحتية الرقمية، فحص الثغرات، وتأمين الحسابات والبيانات المؤسسية ضد التهديدات.</p>
+</div>
+
+<div class="unit-card">
+<div class="unit-icon">
+<svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+<polygon points="23 7 16 12 23 17 23 7"></polygon>
+<rect x="1" y="5" width="15" height="14" rx="2" ry="2"></rect>
+</svg>
+</div>
+<h3>وحدة التسويق الرقمي وصناعة المحتوى</h3>
+<p>بناء الهويات البصرية، المونتاج، التعليق الصوتي، وإدارة الحملات الإعلانية ومنصات التواصل.</p>
+</div>
+
+<div class="unit-card">
+<div class="unit-icon">
+<svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+<line x1="18" y1="20" x2="18" y2="10"></line>
+<line x1="12" y1="20" x2="12" y2="4"></line>
+<line x1="6" y1="20" x2="6" y2="14"></line>
+</svg>
+</div>
+<h3>وحدة الخدمات التحليلية والإدارية</h3>
+<p>التحليل الإحصائي والأكاديمي، حلول حزمة مايكروسوفت المكتبية، والاستشارات الإدارية والتدريب.</p>
+</div>
+</div>
+</div>
+</section>
+
+<!-- منهجية العمل المؤسسية -->
+<section id="workflow" class="section-subtle">
+<div class="container">
+<div class="section-header">
+<span class="section-tag">آلية التنفيذ</span>
+<h2>منهجية العمل في فريق نسق</h2>
+<p>نتبع مساراً مؤسسياً واضحاً يضمن تسليم المشاريع بأعلى جودة وضمن الجدول الزمني المعتمد.</p>
+</div>
+
+<div class="workflow-grid">
+<div class="step-card">
+<div class="step-number">01</div>
+<h3>تحليل المتطلبات والاستشارة</h3>
+<p>دراسة احتياج العميل أو المؤسسة وتحديد النطاق الفني والزمني للمشروع بدقة.</p>
+</div>
+<div class="step-card">
+<div class="step-number">02</div>
+<h3>التخطيط وتوزيع المهام</h3>
+<p>إسناد كل جزء من المشروع إلى الوحدة التخصصية المعنية ضمن خطة عمل متكاملة.</p>
+</div>
+<div class="step-card">
+<div class="step-number">03</div>
+<h3>التنفيذ وضبط الجودة</h3>
+<p>تطبيق المعايير التقنية والإبداعية مع مراجعة داخلية شاملة لكل مخرج قبل الاعتماد.</p>
+</div>
+<div class="step-card">
+<div class="step-number">04</div>
+<h3>التسليم والدعم المستمر</h3>
+<p>تسليم الملفات والأنظمة بصيغها الرسمية مع توفير المتابعة والدعم الفني اللازم.</p>
+</div>
+</div>
+</div>
+</section>
+
+<!-- قسم الخدمات الـ 12 مع البحث والفلترة -->
+<section id="services">
+<div class="container">
+<div class="section-header">
+<span class="section-tag">دليل الخدمات الشامل</span>
+<h2>12 خدمة احترافية تحت سقف واحد</h2>
+<p>اضغط على زر "+ أضف إلى باقتك" في أي بطاقة لإدراجها مباشرة في مُصمم الباقات.</p>
+</div>
+
+<div class="services-controls">
+<div class="search-box-wrapper">
+<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+<circle cx="11" cy="11" r="8"></circle>
+<line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+</svg>
+<input type="text" id="serviceSearchInput" placeholder="ابحث عن خدمة (مثال: برمجة، تصميم، إحصاء، أمن سيبراني...)" oninput="renderServicesGrid()" />
+</div>
+
+<div class="filter-bar">
+<button type="button" class="filter-btn active" onclick="setServiceCategory('all', this)">جميع الخدمات (12)</button>
+<button type="button" class="filter-btn" onclick="setServiceCategory('tech', this)">الحلول التقنية والأمنية</button>
+<button type="button" class="filter-btn" onclick="setServiceCategory('media', this)">التصميم والتسويق والمحتوى</button>
+<button type="button" class="filter-btn" onclick="setServiceCategory('admin', this)">التحليل والإدارة والتدريب</button>
+</div>
+</div>
+
+<div class="services-grid" id="servicesContainer"></div>
+</div>
+</section>
+
+<!-- الباقات المؤسسية الجاهزة -->
+<section id="presets" class="section-subtle">
+<div class="container">
+<div class="section-header">
+<span class="section-tag">باقات مختارة</span>
+<h2>الباقات المؤسسية الجاهزة</h2>
+<p>اختر إحدى الباقات المتكاملة ليتم تسجيل خدماتها تلقائياً في مُصمم الباقات بالأسفل.</p>
+</div>
+
+<div class="presets-grid">
+<div class="preset-card">
+<div>
+<span class="preset-badge">للمشاريع الناشئة</span>
+<h3>باقة الانطلاقة الرقمية</h3>
+<p>تأسيس حضور رقمي متكامل وآمن على شبكة الإنترنت.</p>
+<ul class="preset-items">
+<li>البرمجة والتطوير</li>
+<li>الأمن السيبراني</li>
+<li>التصميم الجرافيكي والمونتاج</li>
+<li>الدعم التقني والفني</li>
+</ul>
+</div>
+<button type="button" class="btn btn-outline" style="width: 100%;" onclick="selectPresetByIds([1, 2, 5, 4], 'باقة الانطلاقة الرقمية')">
+اختيار وتعبئة هذه الباقة
+</button>
+</div>
+
+<div class="preset-card featured">
+<div>
+<span class="preset-badge">الأكثر طلباً</span>
+<h3>باقة الهوية والانتشار الإعلامي</h3>
+<p>منظومة إعلامية وتسويقية كاملة لبناء العلامة التجارية وزيادة المبيعات.</p>
+<ul class="preset-items">
+<li>التصميم الجرافيكي والمونتاج</li>
+<li>التسويق الرقمي</li>
+<li>صناعة وكتابة المحتوى</li>
+<li>التعليق الصوتي الاحترافي</li>
+<li>إدارة منصات التواصل الاجتماعي</li>
+</ul>
+</div>
+<button type="button" class="btn btn-gold" style="width: 100%;" onclick="selectPresetByIds([5, 6, 7, 8, 9], 'باقة الهوية والانتشار الإعلامي')">
+اعتماد الباقة في المُصمم
+</button>
+</div>
+
+<div class="preset-card">
+<div>
+<span class="preset-badge">للأبحاث والمؤسسات</span>
+<h3>باقة الأعمال والتحليل المؤسسي</h3>
+<p>دعم إداري وأكاديمي وإحصائي متقدم للشركات والباحثين.</p>
+<ul class="preset-items">
+<li>التحليل والبحث الإحصائي</li>
+<li>خدمات برامج مايكروسوفت</li>
+<li>الاستشارات الإدارية والتدريب</li>
+<li>حلول الذكاء الاصطناعي</li>
+</ul>
+</div>
+<button type="button" class="btn btn-outline" style="width: 100%;" onclick="selectPresetByIds([10, 11, 12, 3], 'باقة الأعمال والتحليل المؤسسي')">
+اختيار وتعبئة هذه الباقة
+</button>
+</div>
+</div>
+</div>
+</section>
+
+<!-- مصمم الباقات المخصصة -->
+<section id="builder">
+<div class="container">
+<div class="section-header">
+<span class="section-tag">حلول مرنة</span>
+<h2>مُصمم الباقات المخصصة</h2>
+<p>انقر على الخدمات المطلوبة لتسجيلها في باقتك، ثم أرسل الطلب مباشرة عبر واتساب أو انسخ التذكرة.</p>
+</div>
+
+<div class="builder-wrapper">
+<div class="builder-options">
+<div class="builder-toolbar">
+<div>
+<h3 style="font-size: 1.1rem; color: var(--text-main);">اضغط لتحديد الخدمات المطلوبة:</h3>
+<p style="font-size: 0.84rem; color: var(--text-muted);">يمكنك اختيار خدمة واحدة أو عدة خدمات معاً.</p>
+</div>
+<div style="display: flex; gap: 0.5rem;">
+<button type="button" class="btn btn-outline btn-sm" onclick="selectAllPackageServices()">تحديد الكل (12)</button>
+<button type="button" class="btn btn-outline btn-sm" onclick="clearAllPackageServices()">إفراغ الباقة</button>
+</div>
+</div>
+
+<!-- شبكة أزرار اختيار الخدمات -->
+<div class="builder-grid" id="builderOptionsGrid"></div>
+
+<div style="margin-top: 1.6rem; display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 1rem;">
+<div class="form-group">
+<label for="pkgClientName">الاسم الكريم أو الجهة *</label>
+<input type="text" id="pkgClientName" class="form-control" placeholder="مثال: شركة الأفق / محمد..." />
+</div>
+<div class="form-group">
+<label for="pkgClientPhone">رقم التواصل (اختياري)</label>
+<input type="tel" id="pkgClientPhone" class="form-control" placeholder="+963 ..." />
+</div>
+<div class="form-group">
+<label for="pkgPriority">أولوية التنفيذ ونطاق المشروع</label>
+<select id="pkgPriority" class="form-control">
+<option value="أولوية اعتيادية (جدول زمني قياسي)">أولوية اعتيادية (جدول زمني قياسي)</option>
+<option value="مشروع مستعجل (أولوية قصوى)">مشروع مستعجل (أولوية قصوى)</option>
+<option value="عقد شراكة وتشغيل دوري شهري">عقد شراكة وتشغيل دوري شهري</option>
+</select>
+</div>
+<div class="form-group" style="grid-column: 1 / -1;">
+<label for="pkgNotes">طبيعة المشروع أو ملاحظات إضافية</label>
+<input type="text" id="pkgNotes" class="form-control" placeholder="تفاصيل مختصرة عن المطلوب..." />
+</div>
+</div>
+</div>
+
+<div class="builder-summary">
+<h3>ملخص الباقة المسجلة</h3>
+<ul class="selected-list" id="selectedPkgList"></ul>
+<div style="margin-bottom: 1.15rem; font-size: 0.92rem; color: var(--accent-gold); display: flex; justify-content: space-between; align-items: center;">
+<span>إجمالي الخدمات المسجلة:</span>
+<strong id="pkgCountBadge">0 من 12</strong>
+</div>
+<div style="display: flex; flex-direction: column; gap: 0.65rem;">
+<button type="button" class="btn btn-gold" style="width: 100%;" onclick="registerAndOpenPackageModal()">
+تسجيل الباقة وإرسال الطلب
+</button>
+<button type="button" class="btn btn-outline" style="width: 100%;" onclick="copyPackageToClipboard()">
+نسخ نص الباقة للحافظة
+</button>
+</div>
+</div>
+</div>
+</div>
+</section>
+
+<!-- نظام حجز المواعيد والاستشارات -->
+<section id="booking" class="section-subtle">
+<div class="container">
+<div class="section-header">
+<span class="section-tag">تواصل مباشر</span>
+<h2>حجز موعد استشارة رسمية</h2>
+<p>احجز جلسة استشارية مع مختصي فريق نسق لمناقشة متطلبات مشروعك، وسيتم إصدار بطاقة رقم مرجعي لموعدك فوراً.</p>
+</div>
+
+<div class="booking-card">
+<form id="bookingForm" onsubmit="submitBookingForm(event)">
+<div class="booking-grid">
+<div class="form-group">
+<label for="bookName">الاسم الكامل / اسم المؤسسة *</label>
+<input type="text" id="bookName" class="form-control" required placeholder="أدخل الاسم الكامل" />
+</div>
+
+<div class="form-group">
+<label for="bookPhone">رقم التواصل (واتساب / هاتف) *</label>
+<input type="tel" id="bookPhone" class="form-control" required placeholder="+963 ..." />
+</div>
+
+<div class="form-group">
+<label for="bookUnit">الوحدة التخصصية المطلوبة *</label>
+<select id="bookUnit" class="form-control" required>
+<option value="وحدة الحلول التقنية والبرمجة">وحدة الحلول التقنية والبرمجة</option>
+<option value="وحدة الأمن السيبراني">وحدة الأمن السيبراني</option>
+<option value="وحدة التسويق الرقمي وصناعة المحتوى">وحدة التسويق الرقمي وصناعة المحتوى</option>
+<option value="وحدة الخدمات التحليلية والإدارية">وحدة الخدمات التحليلية والإدارية</option>
+</select>
+</div>
+
+<div class="form-group">
+<label for="bookDate">التاريخ المفضل للموعد *</label>
+<input type="date" id="bookDate" class="form-control" required />
+</div>
+
+<div class="form-group full-width">
+<label for="bookDetails">ملخص الموضوع أو الاستشارة *</label>
+<textarea id="bookDetails" rows="3" class="form-control" required placeholder="اشرح باختصار فكرة المشروع أو الاستشارة المطلوبة..."></textarea>
+</div>
+
+<div class="full-width">
+<button type="submit" class="btn btn-gold" style="width: 100%; padding: 0.9rem;">
+إصدار الرقم المرجعي وتأكيد الحجز
+</button>
+</div>
+</div>
+</form>
+</div>
+</div>
+</section>
+
+<!-- قسم الأسئلة الشائعة -->
+<section id="faq">
+<div class="container">
+<div class="section-header">
+<span class="section-tag">استفسارات متكررة</span>
+<h2>الأسئلة الشائعة</h2>
+<p>إجابات وافية حول آلية التعاقد وتنفيذ المشاريع في فريق نسق.</p>
+</div>
+
+<div class="faq-list">
+<div class="faq-item active">
+<button type="button" class="faq-question" onclick="toggleFaqItem(this)">
+<span>كيف يتم تسعير الباقات المخصصة والمشاريع؟</span>
+<span>+</span>
+</button>
+<div class="faq-answer">
+يتم تسعير كل مشروع بناءً على نطاق العمل الفني، عدد الخدمات المختارة في الباقة، والجدول الزمني المطلوب. فور إرسال طلب الباقة عبر الموقع يتواصل معك المختص لتقديم عرض فني ومالي واضح.
+</div>
+</div>
+
+<div class="faq-item">
+<button type="button" class="faq-question" onclick="toggleFaqItem(this)">
+<span>هل يمكن دمج خدمات من وحدات مختلفة في مشروع واحد؟</span>
+<span>+</span>
+</button>
+<div class="faq-answer">
+نعم بكل تأكيد؛ صُمم "مُصمم الباقات" خصيصاً ليسمح بدمج البرمجة والأمن السيبراني مع التصميم والتسويق أو التحليل الإحصائي تحت إدارة مشروع واحدة متناغمة.
+</div>
+</div>
+
+<div class="faq-item">
+<button type="button" class="faq-question" onclick="toggleFaqItem(this)">
+<span>ما فائدة الرقم المرجعي عند تسجيل باقة أو حجز استشارة؟</span>
+<span>+</span>
+</button>
+<div class="faq-answer">
+يُستخدم الرقم المرجعي (مثل NSQ-482910) لتوثيق طلبك لدى إدارة الفريق وتسهيل متابعة جلستك الاستشارية وملفات مشروعك لاحقاً دون الحاجة لإعادة شرح التفاصيل.
+</div>
+</div>
+</div>
+</div>
+</section>
+
+<!-- التذييل -->
+<footer>
+<div class="container">
+<div class="footer-grid">
+<div class="footer-col">
+<div class="brand" style="margin-bottom: 1rem;">
+<div class="brand-mark">
+<svg viewBox="0 0 120 120">
+<path d="M54 34 C72 28 84 40 80 58 L80 66 L54 40 Z" fill="none" stroke="#b99b61" stroke-width="6.5" stroke-linejoin="miter" />
+<path d="M66 86 C48 92 36 80 40 62 L40 54 L66 80 Z" fill="none" stroke="#b99b61" stroke-width="6.5" stroke-linejoin="miter" />
+<path d="M26 84 L26 20 L94 88 L94 30" fill="none" stroke="#05422c" stroke-width="9.5" stroke-linecap="butt" stroke-linejoin="miter" />
+</svg>
+</div>
+<div class="brand-text">
+<h1>فريق نسق | NASAQ TEAM</h1>
+<span>الاحترافية، الدقة، والتكامل</span>
+</div>
+</div>
+<p style="font-size: 0.9rem; color: #c9d6d4; max-width: 380px;">
+شريكك الاستراتيجي في الحلول البرمجية، الأمن السيبراني، التصميم والإنتاج الإعلامي، والخدمات البحثية والإدارية.
+</p>
+<div class="social-row">
+<a href="https://www.instagram.com/nasaq.team" target="_blank" rel="noopener" class="social-btn">
+إنستغرام
+</a>
+<a href="https://www.facebook.com/share/19KmsYseeQ/" target="_blank" rel="noopener" class="social-btn">
+فيسبوك
+</a>
+<a href="https://wa.me/963945551913" target="_blank" rel="noopener" class="social-btn">
+واتساب مباشر
+</a>
+</div>
+</div>
+
+<div class="footer-col">
+<h4>روابط سريعة</h4>
+<ul class="footer-links">
+<li><a href="#units">وحدات العمل التخصصية</a></li>
+<li><a href="#workflow">منهجية العمل</a></li>
+<li><a href="#services">دليل الخدمات (12 خدمة)</a></li>
+<li><a href="#presets">الباقات المؤسسية الجاهزة</a></li>
+<li><a href="#builder">مُصمم الباقات المخصصة</a></li>
+<li><a href="#booking">حجز موعد استشاري</a></li>
+</ul>
+</div>
+
+<div class="footer-col">
+<h4>بيانات التواصل المباشر</h4>
+<ul class="footer-links">
+<li>الهاتف / واتساب: <a href="https://wa.me/963945551913" dir="ltr">+963 945 551 913</a></li>
+<li>إنستغرام: <a href="https://www.instagram.com/nasaq.team" target="_blank">@nasaq.team</a></li>
+</ul>
+</div>
+</div>
+
+<div class="footer-bottom">
+جميع الحقوق محفوظة © فريق نسق | NASAQ TEAM
+</div>
+</div>
+</footer>
+
+<!-- نافذة التذكرة المرجعية الموحدة (للباقات وللحجوزات) -->
+<div class="modal-overlay" id="ticketModal">
+<div class="modal-box">
+<div style="width: 56px; height: 56px; margin: 0 auto 0.75rem; border-radius: 12px; background: #f8f5ed; border: 1.5px solid var(--accent-gold); display:flex; align-items:center; justify-content:center;">
+<svg viewBox="0 0 120 120" width="44" height="44">
+<path d="M54 34 C72 28 84 40 80 58 L80 66 L54 40 Z" fill="none" stroke="#b99b61" stroke-width="6.5" stroke-linejoin="miter" />
+<path d="M66 86 C48 92 36 80 40 62 L40 54 L66 80 Z" fill="none" stroke="#b99b61" stroke-width="6.5" stroke-linejoin="miter" />
+<path d="M26 84 L26 20 L94 88 L94 30" fill="none" stroke="#05422c" stroke-width="9.5" stroke-linecap="butt" stroke-linejoin="miter" />
+</svg>
+</div>
+<h3 id="modalTitle" style="font-size: 1.3rem; margin-bottom: 0.3rem;">تم تسجيل الطلب بنجاح</h3>
+<p style="font-size: 0.88rem; color: var(--text-muted);">الرقم المرجعي الخاص بطلبك لدى فريق نسق:</p>
+<div class="ref-badge" id="modalRefCode">NSQ-000000</div>
+<p id="modalSummaryText" style="font-size: 0.88rem; color: var(--text-muted); margin-bottom: 1.25rem;"></p>
+<div style="display: flex; flex-direction: column; gap: 0.6rem;">
+<a href="#" target="_blank" rel="noopener" class="btn btn-gold" id="modalWhatsappLink" style="width: 100%;">إرسال الطلب عبر واتساب الآن</a>
+<button type="button" class="btn btn-outline" onclick="copyCurrentTicketText()" style="width: 100%;">نسخ تفاصيل الطلب والرقم المرجعي</button>
+<button type="button" class="btn btn-sm" style="background: transparent; color: var(--text-muted); margin-top: 0.25rem;" onclick="closeTicketModal()">إغلاق النافذة</button>
+</div>
+</div>
+</div>
+
+<!-- صندوق الإشعارات الفورية (Toast) -->
+<div class="toast-box" id="toastBox"></div>
+
+<!-- أزرار عائمة سريعة -->
+<div class="floating-actions">
+<button type="button" class="float-btn" onclick="window.scrollTo({top:0, behavior:'smooth'})" title="العودة للأعلى" aria-label="العودة للأعلى">
+<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+<polyline points="18 15 12 9 6 15"></polyline>
+</svg>
+</button>
+</div>
+
+<script>
+const WHATSAPP_NUMBER = "963945551913";
+let currentCategory = "all";
+let activeTicketMessage = "";
+
+// دوال تخزين محلي آمنة لا تتعطل في أي متصفح
+function safeGetStorage(key, fallback) {
+try {
+const val = localStorage.getItem(key);
+return val !== null ? val : fallback;
+} catch (e) {
+return fallback;
+}
+}
+
+function safeSetStorage(key, value) {
+try {
+localStorage.setItem(key, value);
+} catch (e) {
+// تجاهل الخطأ في حال كان المتصفح يمنع التخزين المحلي
+}
+}
+
+// قائمة الـ 12 خدمة بمعرّفات رقمية ثابتة (id: 1 -> 12)
+const servicesData = [
+{
+id: 1,
+title: "البرمجة والتطوير",
+cat: "tech",
+catName: "تقنية وبرمجة",
+desc: "تصميم وتطوير المواقع الإلكترونية، الأنظمة الويب التفاعلية، والتطبيقات بمعايير برمجية حديثة.",
+svg: <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"&gt;&lt;polyline points="16 18 22 12 16 6"&gt;&lt;/polyline&gt;&lt;polyline points="8 6 2 12 8 18"&gt;&lt;/polyline&gt;&lt;/svg>
+},
+{
+id: 2,
+title: "الأمن السيبراني",
+cat: "tech",
+catName: "أمن رقمي",
+desc: "فحص الثغرات الأمنية، حماية الأنظمة والحسابات الرسمية، وتأمين البيانات ضد الاختراق.",
+svg: <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"&gt;&lt;path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"&gt;&lt;/path&gt;&lt;/svg>
+},
+{
+id: 3,
+title: "حلول الذكاء الاصطناعي",
+cat: "tech",
+catName: "تقنية متقدمة",
+desc: "دمج أدوات الذكاء الاصطناعي وأتمتة المهام لتحسين الكفاءة التشغيلية وتسريع الإنجاز.",
+svg: <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"&gt;&lt;rect x="4" y="4" width="16" height="16" rx="2"/&gt;&lt;rect x="9" y="9" width="6" height="6"/&gt;&lt;line x1="9" y1="1" x2="9" y2="4"/&gt;&lt;line x1="15" y1="1" x2="15" y2="4"/&gt;&lt;line x1="9" y1="20" x2="9" y2="23"/&gt;&lt;line x1="15" y1="20" x2="15" y2="23"/&gt;&lt;/svg>
+},
+{
+id: 4,
+title: "الدعم التقني والفني",
+cat: "tech",
+catName: "دعم تقني",
+desc: "معالجة المشكلات البرمجية وأنظمة التشغيل، تهيئة الشبكات، والصيانة التقنية عن بُعد.",
+svg: <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"&gt;&lt;circle cx="12" cy="12" r="3"&gt;&lt;/circle&gt;&lt;path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1-2.83 2.83l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-4 0v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1 0-4h.09A1.65 1.65 0 0 0 4.6 9"&gt;&lt;/path&gt;&lt;/svg>
+},
+{
+id: 5,
+title: "التصميم الجرافيكي والمونتاج",
+cat: "media",
+catName: "إبداع بصري",
+desc: "تصميم الهويات البصرية الرسمية، المطبوعات، وتحرير ومونتاج الفيديو الإعلاني والمؤسسي.",
+svg: <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"&gt;&lt;path d="M12 19l7-7 3 3-7 7-3-3z"&gt;&lt;/path&gt;&lt;path d="M18 13l-1.5-7.5L2 2l3.5 14.5L13 18l5-5z"&gt;&lt;/path&gt;&lt;/svg>
+},
+{
+id: 6,
+title: "التسويق الرقمي",
+cat: "media",
+catName: "تسويق",
+desc: "إعداد الخطط التسويقية، إدارة الحملات الإعلانية الممولة، وتحسين الوصول للجمهور المستهدف.",
+svg: <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"&gt;&lt;polyline points="23 6 13.5 15.5 8.5 10.5 1 18"&gt;&lt;/polyline&gt;&lt;polyline points="17 6 23 6 23 12"&gt;&lt;/polyline&gt;&lt;/svg>
+},
+{
+id: 7,
+title: "صناعة وكتابة المحتوى",
+cat: "media",
+catName: "محتوى إعلامي",
+desc: "كتابة المحتوى الإبداعي، السيناريوهات الإعلانية، والنصوص الرسمية المتوافقة مع هوية المؤسسة.",
+svg: <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"&gt;&lt;path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"&gt;&lt;/path&gt;&lt;polyline points="14 2 14 8 20 8"&gt;&lt;/polyline&gt;&lt;line x1="16" y1="13" x2="8" y2="13"&gt;&lt;/line&gt;&lt;line x1="16" y1="17" x2="8" y2="17"&gt;&lt;/line&gt;&lt;/svg>
+},
+{
+id: 8,
+title: "التعليق الصوتي الاحترافي",
+cat: "media",
+catName: "إنتاج صوتي",
+desc: "تسجيل تعليق صوتي رسمي وإعلاني ووثائقي بهندسة صوتية نقية تلائم مختلف المشاريع.",
+svg: <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"&gt;&lt;path d="M12 1a3 3 0 0 0-3 3v8a3 3 0 0 0 6 0V4a3 3 0 0 0-3-3z"&gt;&lt;/path&gt;&lt;path d="M19 10v2a7 7 0 0 1-14 0v-2"&gt;&lt;/path&gt;&lt;line x1="12" y1="19" x2="12" y2="23"&gt;&lt;/line&gt;&lt;line x1="8" y1="23" x2="16" y2="23"&gt;&lt;/line&gt;&lt;/svg>
+},
+{
+id: 9,
+title: "إدارة منصات التواصل الاجتماعي",
+cat: "media",
+catName: "إدارة حسابات",
+desc: "جدولة ونشر المحتوى، تطوير الحضور الرقمي، ومتابعة التفاعل وتقارير الأداء الدورية.",
+svg: <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"&gt;&lt;circle cx="18" cy="5" r="3"&gt;&lt;/circle&gt;&lt;circle cx="6" cy="12" r="3"&gt;&lt;/circle&gt;&lt;circle cx="18" cy="19" r="3"&gt;&lt;/circle&gt;&lt;line x1="8.59" y1="13.51" x2="15.42" y2="17.49"&gt;&lt;/line&gt;&lt;line x1="15.41" y1="6.51" x2="8.59" y2="10.49"&gt;&lt;/line&gt;&lt;/svg>
+},
+{
+id: 10,
+title: "التحليل والبحث الإحصائي",
+cat: "admin",
+catName: "تحليل وبيانات",
+desc: "تحليل البيانات الإحصائية، إعداد الدراسات الأكاديمية والميدانية، واستخراج التقارير الداعمة للقرار.",
+svg: <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"&gt;&lt;line x1="18" y1="20" x2="18" y2="10"&gt;&lt;/line&gt;&lt;line x1="12" y1="20" x2="12" y2="4"&gt;&lt;/line&gt;&lt;line x1="6" y1="20" x2="6" y2="14"&gt;&lt;/line&gt;&lt;/svg>
+},
+{
+id: 11,
+title: "خدمات برامج مايكروسوفت",
+cat: "admin",
+catName: "حلول مكتبية",
+desc: "تنسيق المستندات الرسمية (Word)، بناء الجداول واللوحات التفاعلية (Excel)، والعروض الاحترافية (PowerPoint).",
+svg: <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"&gt;&lt;rect x="3" y="3" width="7" height="7"&gt;&lt;/rect&gt;&lt;rect x="14" y="3" width="7" height="7"&gt;&lt;/rect&gt;&lt;rect x="14" y="14" width="7" height="7"&gt;&lt;/rect&gt;&lt;rect x="3" y="14" width="7" height="7"&gt;&lt;/rect&gt;&lt;/svg>
+},
+{
+id: 12,
+title: "الاستشارات الإدارية والتدريب",
+cat: "admin",
+catName: "إدارة وتطوير",
+desc: "تقديم الاستشارات في إدارة الأعمال والموارد البشرية، وتنظيم البرامج التدريبية التخصصية.",
+svg: <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"&gt;&lt;path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"&gt;&lt;/path&gt;&lt;circle cx="9" cy="7" r="4"&gt;&lt;/circle&gt;&lt;path d="M23 21v-2a4 4 0 0 0-3-3.87"&gt;&lt;/path&gt;&lt;path d="M16 3.13a4 4 0 0 1 0 7.75"&gt;&lt;/path&gt;&lt;/svg>
+}
+ ];
+
+// مجموعة المعرّفات الرقمية للخدمات المختارة
+let selectedServiceIds = [];
+try {
+const parsed = JSON.parse(safeGetStorage("nasaq_pkg_ids", "[]"));
+if (Array.isArray(parsed)) {
+selectedServiceIds = parsed.filter(id => typeof id === "number");
+}
+} catch (e) {
+selectedServiceIds = [];
+}
+
+function savePackageIds() {
+safeSetStorage("nasaq_pkg_ids", JSON.stringify(selectedServiceIds));
+}
+
+function isServiceSelected(id) {
+return selectedServiceIds.indexOf(id) !== -1;
+}
+
+// إشعار Toast سريع
+function showToast(message) {
+const toast = document.getElementById("toastBox");
+if (!toast) return;
+toast.textContent = message;
+toast.classList.add("show");
+clearTimeout(window.nasaqToastTimer);
+window.nasaqToastTimer = setTimeout(() => {
+toast.classList.remove("show");
+}, 3000);
+}
+
+// =============== 1. نظام الوضع الليلي والنهاري المصلح ===============
+function applyThemeUI(theme) {
+const htmlEl = document.documentElement;
+htmlEl.setAttribute("data-theme", theme);
+
+const iconHolder = document.getElementById("themeIconHolder");
+const textLabel = document.getElementById("themeTextLabel");
+
+if (theme === "dark") {
+iconHolder.innerHTML = <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"&gt;&lt;circle cx="12" cy="12" r="5"&gt;&lt;/circle&gt;&lt;line x1="12" y1="1" x2="12" y2="3"&gt;&lt;/line&gt;&lt;line x1="12" y1="21" x2="12" y2="23"&gt;&lt;/line&gt;&lt;line x1="4.22" y1="4.22" x2="5.64" y2="5.64"&gt;&lt;/line&gt;&lt;line x1="18.36" y1="18.36" x2="19.78" y2="19.78"&gt;&lt;/line&gt;&lt;line x1="1" y1="12" x2="3" y2="12"&gt;&lt;/line&gt;&lt;line x1="21" y1="12" x2="23" y2="12"&gt;&lt;/line&gt;&lt;line x1="4.22" y1="19.78" x2="5.64" y2="18.36"&gt;&lt;/line&gt;&lt;line x1="18.36" y1="5.64" x2="19.78" y2="4.22"&gt;&lt;/line&gt;&lt;/svg>;
+textLabel.textContent = "الوضع النهاري";
+} else {
+iconHolder.innerHTML = <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"&gt;&lt;path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"&gt;&lt;/path&gt;&lt;/svg>;
+textLabel.textContent = "الوضع الليلي";
+}
+}
+
+function toggleThemeMode() {
+const current = document.documentElement.getAttribute("data-theme") || "light";
+const next = current === "dark" ? "light" : "dark";
+applyThemeUI(next);
+safeSetStorage("nasaq_theme_mode", next);
+showToast(next === "dark" ? "تم تفعيل الوضع الليلي" : "تم تفعيل الوضع النهاري");
+}
+
+// =============== 2. نظام عرض الخدمات ومصمم الباقات المصلح ===============
+function renderServicesGrid() {
+const searchInput = document.getElementById("serviceSearchInput");
+const query = searchInput ? searchInput.value.trim().toLowerCase() : "";
+const container = document.getElementById("servicesContainer");
+if (!container) return;
+
+container.innerHTML = "";
+
+const filtered = servicesData.filter(s => {
+const matchesCat = currentCategory === "all" || s.cat === currentCategory;
+const matchesQuery = !query || s.title.toLowerCase().includes(query) || s.desc.toLowerCase().includes(query) || s.catName.toLowerCase().includes(query);
+return matchesCat && matchesQuery;
+});
+
+if (filtered.length === 0) {
+container.innerHTML = <div style="grid-column: 1/-1; text-align:center; padding: 2rem; color: var(--text-muted);"&gt;لا توجد خدمات مطابقة لعبارة البحث.&lt;/div>;
+return;
+}
+
+filtered.forEach(service => {
+const selected = isServiceSelected(service.id);
+const card = document.createElement("div");
+card.className = "service-card" + (selected ? " in-pkg" : "");
+card.innerHTML = &lt;div&gt; &lt;div class="service-top"&gt; &lt;div class="service-icon"&gt;${service.svg}</div>
+<span class="service-cat-tag">${service.catName}&lt;/span&gt; &lt;/div&gt; &lt;h3&gt;${service.title}</h3>
+<p>${service.desc}&lt;/p&gt; &lt;/div&gt; &lt;div class="service-action"&gt; &lt;button type="button" class="service-toggle-btn ${selected ? "added" : ""}" onclick="togglePackageServiceById(${service.id}, true)"&gt; ${selected ? "✓ مضافة للباقة" : "+ أضف إلى باقتك"}
+</button>
+<a href="#booking" style="font-size: 0.82rem; color: var(--text-muted);">حجز استشارة ←</a>
+</div>
+`;
+container.appendChild(card);
+});
+}
+
+function setServiceCategory(cat, btnElement) {
+currentCategory = cat;
+document.querySelectorAll(".filter-btn").forEach(b => b.classList.remove("active"));
+if (btnElement) btnElement.classList.add("active");
+renderServicesGrid();
+}
+
+function renderBuilderSection() {
+const grid = document.getElementById("builderOptionsGrid");
+const summaryList = document.getElementById("selectedPkgList");
+const countBadge = document.getElementById("pkgCountBadge");
+
+if (!grid || !summaryList || !countBadge) return;
+
+// رسم أزرار الخدمات في المُصمم
+grid.innerHTML = "";
+servicesData.forEach(s => {
+const selected = isServiceSelected(s.id);
+const btn = document.createElement("button");
+btn.type = "button";
+btn.className = "pkg-item-btn" + (selected ? " selected" : "");
+btn.onclick = () => togglePackageServiceById(s.id, false);
+btn.innerHTML = &lt;span class="check-indicator"&gt;${selected ? "✓" : ""}</span>
+<span>${s.title}&lt;/span&gt;;
+grid.appendChild(btn);
+});
+
+// تحديث العداد والملخص
+countBadge.textContent = ``${selectedServiceIds.length} من 12`;
+
+if (selectedServiceIds.length === 0) {
+summaryList.innerHTML = <li style="color: #b0c2bf; border:none;"&gt;لم يتم تحديد أي خدمة بعد. اضغط على الخدمات لإضافتها.&lt;/li>;
+return;
+}
+
+summaryList.innerHTML = "";
+selectedServiceIds.forEach(id => {
+const srv = servicesData.find(item => item.id === id);
+if (!srv) return;
+const li = document.createElement("li");
+li.innerHTML = &lt;span&gt;• ${srv.title}</span>
+<button type="button" class="remove-srv-btn" onclick="togglePackageServiceById(${srv.id}, false)"&gt;إزالة&lt;/button&gt;;
+summaryList.appendChild(li);
+});
+}
+
+function togglePackageServiceById(id, showNotification) {
+const index = selectedServiceIds.indexOf(id);
+const srv = servicesData.find(item => item.id === id);
+
+if (index !== -1) {
+selectedServiceIds.splice(index, 1);
+if (showNotification && srv) showToast(تمت إزالة "${srv.title}" من الباقة); } else { selectedServiceIds.push(id); if (showNotification && srv) showToast(تمت إضافة "${srv.title}" إلى باقتك);
+}
+
+savePackageIds();
+renderBuilderSection();
+renderServicesGrid();
+}
+
+function selectAllPackageServices() {
+selectedServiceIds = servicesData.map(s => s.id);
+savePackageIds();
+renderBuilderSection();
+renderServicesGrid();
+showToast("تم تحديد جميع الخدمات (12 خدمة)");
+}
+
+function clearAllPackageServices() {
+selectedServiceIds = [];
+savePackageIds();
+renderBuilderSection();
+renderServicesGrid();
+showToast("تم إفراغ الباقة بالكامل");
+}
+
+function selectPresetByIds(idsArray, presetTitle) {
+selectedServiceIds = [...idsArray];
+const notesInput = document.getElementById("pkgNotes");
+if (notesInput) notesInput.value = اعتماد ${presetTitle}`;
+savePackageIds();
+renderBuilderSection();
+renderServicesGrid();
+
+const builderEl = document.getElementById("builder");
+if (builderEl) builderEl.scrollIntoView({ behavior: "smooth" });
+showToast(تم تسجيل "${presetTitle}" في مُصمم الباقات`);
+}
+
+function generatePackageMessageText(refCode) {
+const client = document.getElementById("pkgClientName").value.trim() || "غير محدد";
+const phone = document.getElementById("pkgClientPhone").value.trim() || "غير محدد";
+const priority = document.getElementById("pkgPriority").value;
+const notes = document.getElementById("pkgNotes").value.trim() || "لا توجد ملاحظات إضافية";
+
+const chosenTitles = selectedServiceIds.map((id, idx) => {
+const srv = servicesData.find(item => item.id === id);
+return srv ? ${idx + 1}. ${srv.title} : "";
+}).filter(Boolean).join("\n");
+
+return السلام عليكم فريق نسق (NASAQ TEAM)،\nطلب تسجيل باقة خدمات مخصصة:\n\n*الرقم المرجعي للباقة:* ${refCode}\nالاسم/الجهة:${client}\n*رقم التواصل:* ${phone}\nأولوية التنفيذ:${priority}\n\n*الخدمات المسجلة (${selectedServiceIds.length}):*\n${chosenTitles}\n\n*ملاحظات المشروع:* ${notes}`;
+}
+
+function registerAndOpenPackageModal() {
+if (selectedServiceIds.length === 0) {
+showToast("يرجى اختيار خدمة واحدة على الأقل لتسجيل الباقة.");
+return;
+}
+
+const clientInput = document.getElementById("pkgClientName");
+const clientName = clientInput.value.trim() || "عميل فريق نسق";
+const refCode = "NSQ-PKG-" + Math.floor(100000 + Math.random() * 900000);
+
+activeTicketMessage = generatePackageMessageText(refCode);
+
+document.getElementById("modalTitle").textContent = "تم تسجيل باقتك المخصصة بنجاح";
+document.getElementById("modalRefCode").textContent = refCode;
+document.getElementById("modalSummaryText").textContent = ``${clientName} — عدد الخدمات المختارة: ({WHATSAPP_NUMBER}?text=${encodeURIComponent(activeTicketMessage)};
+document.getElementById("ticketModal").classList.add("show");
+}
+
+function copyPackageToClipboard() {
+if (selectedServiceIds.length === 0) {
+showToast("يرجى اختيار خدمة واحدة على الأقل لنسخ الباقة.");
+return;
+}
+const refCode = "NSQ-PKG-" + Math.floor(100000 + Math.random() * 900000);
+const text = generatePackageMessageText(refCode);
+fallbackCopyText(text, "تم نسخ ملخص الباقة إلى الحافظة بنجاح");
+}
+
+// =============== 3. نظام حجز المواعيد والتذاكر المصلح ===============
+function submitBookingForm(e) {
+e.preventDefault();
+const name = document.getElementById("bookName").value.trim();
+const phone = document.getElementById("bookPhone").value.trim();
+const unit = document.getElementById("bookUnit").value;
+const date = document.getElementById("bookDate").value;
+const details = document.getElementById("bookDetails").value.trim();
+const refCode = "NSQ- BKG-" + Math.floor(100000 + Math.random() * 900000);
+
+activeTicketMessage = السلام عليكم فريق نسق (NASAQ TEAM)،\nطلب حجز موعد استشارة رسمية:\n\n*الرقم المرجعي:*${refCode}\nالاسم/الجهة:latex
+{name}\n*رقم التواصل:* 
+
+{phone}\nالوحدة المختصة:latex
+{unit}\n*التاريخ المقترح:* 
+
+{date}\nتفاصيل الاستشارة: ${details};
+
+document.getElementById("modalTitle").textContent = "تم إصدار تذكرة الاستشارة";
+document.getElementById("modalRefCode").textContent = refCode;
+document.getElementById("modalSummaryText").textContent = ``${name} — {date}); document.getElementById("modalWhatsappLink").href =https://wa.me/{encodeURIComponent(activeTicketMessage)}`;
+document.getElementById("ticketModal").classList.add("show");
+}
+
+function copyCurrentTicketText() {
+if (!activeTicketMessage) return;
+fallbackCopyText(activeTicketMessage, "تم نسخ بيانات التذكرة والرقم المرجعي");
+}
+
+function closeTicketModal() {
+document.getElementById("ticketModal").classList.remove("show");
+}
+
+// دالة نسخ مضمونة تعمل حتى على الملفات المحلية (file://) والهواتف
+function fallbackCopyText(text, successMsg) {
+if (navigator.clipboard && window.isSecureContext) {
+navigator.clipboard.writeText(text).then(() => {
+showToast(successMsg);
+}).catch(() => {
+legacyCopy(text, successMsg);
+});
+} else {
+legacyCopy(text, successMsg);
+}
+}
+
+function legacyCopy(text, successMsg) {
+const textArea = document.createElement("textarea");
+textArea.value = text;
+textArea.style.position = "fixed";
+textArea.style.left = "-9999px";
+document.body.appendChild(textArea);
+textArea.focus();
+textArea.select();
+try {
+document.execCommand("copy");
+showToast(successMsg);
+} catch (err) {
+showToast("تعذر النسخ التلقائي، يرجى الإرسال عبر واتساب مباشرة");
+}
+document.body.removeChild(textArea);
+}
+
+// =============== 4. القوائم والأسئلة الشائعة والتهيئة ===============
+function toggleFaqItem(btn) {
+const item = btn.parentElement;
+item.classList.toggle("active");
+}
+
+function toggleMobileMenu() {
+const drawer = document.getElementById("mobileDrawer");
+drawer.classList.toggle("open");
+}
+
+function closeMobileMenu() {
+const drawer = document.getElementById("mobileDrawer");
+drawer.classList.remove("open");
+}
+
+window.addEventListener("scroll", () => {
+const winScroll = document.body.scrollTop || document.documentElement.scrollTop;
+const height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+const scrolled = height > 0 ? (winScroll / height) * 100 : 0;
+const bar = document.getElementById("scrollProgress");
+if (bar) bar.style.width = scrolled + "%";
+});
+
+// تهيئة أولية عند تحميل الصفحة
+(function initNasaqSite() {
+// 1. تهيئة المظهر (الوضع الليلي/النهاري)
+const savedTheme = safeGetStorage("nasaq_theme_mode", "light");
+applyThemeUI(savedTheme);
+
+// 2. ضبط تاريخ اليوم في حقل الحجز
+const todayStr = new Date().toISOString().split("T")[0];
+const dateInput = document.getElementById("bookDate");
+if (dateInput) {
+dateInput.setAttribute("min", todayStr);
+dateInput.value = todayStr;
+}
+
+// 3. رسم الخدمات ومصمم الباقات
+renderServicesGrid();
+renderBuilderSection();
+})();
+</script>
+</body>
+</html>
